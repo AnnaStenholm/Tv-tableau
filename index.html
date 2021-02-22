@@ -3,6 +3,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script async src="/data/script.js"></script>
     <script async src ="/data/moment-with-locales.min.js"></script>
+    <script>
+      moment().format();
+  </script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -27,11 +30,11 @@
         <i class="fas fa-bars"></i>
       </div>
         <ul class="menu">
-          <li onclick="setChannel('SVT 1')">SVT 1</li>
-          <li onclick="setChannel('SVT 2')">SVT 2</li>
-          <li onclick="setChannel('SVT Barn')">SVT Barn</li>
+          <li onclick="setChannel('SVT1')">SVT 1</li>
+          <li onclick="setChannel('SVT2')">SVT 2</li>
+          <li onclick="setChannel('SVTBarn')">SVT Barn</li>
           <li onclick="setChannel('Kunskapskanalen')">Kunskapskanalen</li>
-          <li onclick="setChannel('SVT 24')">SVT 24</li>
+          <li onclick="setChannel('SVT24')">SVT 24</li>
         </ul>
 
   <!-- Page content -->
@@ -39,23 +42,22 @@
     <div class="row">
       <div class="col-sm-6 offset-sm-2">
       <!-- I DENNA H1 SKA VALD TV-KANALS NAMN SKRIVAS UT -->
-      <h1 id="js-title">SVT 2</h1>
+      <h1 id="js-title"></h1>
       <div id="js-schedule">
         <!-- EXEMPEL-HTML, SOM SKA LÄGGAS IN MED JAVASCRIPT UTIFRÅN JSON-DATA -->
-        
+        <!--
         <ul class="list-group list-group-flush">
           <li class="list-group-item show-previous">Visa tidigare program</li>
           <li class="list-group-item">
-            <div class="tid"><strong></strong></div>
-            <div class="namn"></div>
-          </li>
+            <strong>13:00</strong>
+            <div>Vinterstudion</div>
+          </li>s
           <li class="list-group-item">
-            <div class="tid"><strong></strong></div>
-            <div class="namn"></div>
-          </li>     
+            <strong>13:30</strong>
+            <div>Alpint: VM</div>
+          </li>    
         </ul>   
-        
-      </div>
+        -->
       <!-- DENNA VISAS BARA NÄR INGEN DATA LADDATS-->
       <img src="loading.gif" id="js-loading" class="loading-spinner hidden" />
      </div>
