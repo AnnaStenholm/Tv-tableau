@@ -21,6 +21,7 @@ window.addEventListener("load", () => {
 
 function setChannel(chanel) {
   document.querySelector("#js-loading").classList.remove("hidden");
+  showEarlierPrograms = false;
   fetch("/data/" + chanel + ".json")
     .then(res => res.json())
     .then((data) => {
@@ -28,19 +29,19 @@ function setChannel(chanel) {
       programData = data;
       render(data);
       document.querySelector("#js-loading").classList.add("hidden");
-    });
+    })
   document.getElementById("js-title").innerHTML = chanel;
 }
 
 /* Map-funktion*/
 function render(data) {
-  tidSorterare(data);
-  if (!previousItems) {
+  timeSort(data);
+  if (previousItems) {
     data = filterTid(data);
   }
   let html = `<ul class="list-group list-group-flush">`
   if (!previousItems) {
-    html += `<li class="list-group-item show-previous" "onclick"=showRecent()>Visa tidigare program</li>`
+    html += `<li class="list-group-item show-previous" "onclick"=showEarlierPrograms()>Visa tidigare program</li>`
   }
 
 
@@ -56,8 +57,10 @@ function render(data) {
 
 }
 
+setChannel
+
 /*Sortera på tid */
-function tidSorterare() {
+function timeSort(data) {
 
   data.sort((a, b) => {
     if (a.start < b.start) {
@@ -72,13 +75,13 @@ function tidSorterare() {
 
 let previousItems = false;
 let data = [];
-function showRecent() {
+function showEarlierPrograms() {
   previousItems = true;
   render(programData);
 
   function filterTid(data) {
-    return data.filter(function (program) {
-      const startTime = new Date(program.start);
+    return data.filter(function (programData) {
+      const startTime = new Date(programData.start);
       const currentTime = new Date();
       return startTime.getHours() > currentTime.getHours();
     })
